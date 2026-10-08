@@ -1,3 +1,5 @@
+<img width="1900" height="932" alt="image" src="https://github.com/user-attachments/assets/9955a50e-1917-474f-bb23-ada09c27f807" />
+
 # CloudCart
 
 CloudCart is a full-stack e-commerce MVP with a polished React storefront and a role-protected Express/Prisma API. It is designed for local MySQL today and a later, low-friction migration to Amazon RDS MySQL.
