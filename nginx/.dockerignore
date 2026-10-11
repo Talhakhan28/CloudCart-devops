@@ -1,0 +1,8 @@
+# The frontend image is built with the repository root as its context so it
+# can copy client/ and nginx/. Root .dockerignore controls that build.
+.git
+.env
+.env.*
+node_modules
+dist
+npm-debug.log*

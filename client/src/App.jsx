@@ -25,13 +25,17 @@ import {
 } from "lucide-react";
 import "./index.css";
 const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL || "http://localhost:5000/api",
+    // Relative in the production image so the browser talks to Nginx, not an
+    // internal container address. Local development can still override it.
+    baseURL: import.meta.env.VITE_API_URL || "/api",
   }),
   C = createContext(),
   useStore = () => useContext(C),
   money = (n) => `$${Number(n).toFixed(2)}`,
-  imageUrl = (src) =>
-    src?.startsWith("/") ? `${new URL(api.defaults.baseURL).origin}${src}` : src;
+  apiOrigin = api.defaults.baseURL.startsWith("http")
+    ? new URL(api.defaults.baseURL).origin
+    : window.location.origin,
+  imageUrl = (src) => (src?.startsWith("/") ? `${apiOrigin}${src}` : src);
 function Store({ children }) {
   const [user, setUser] = useState(
       JSON.parse(localStorage.getItem("cc_user") || "null"),

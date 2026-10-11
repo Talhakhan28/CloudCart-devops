@@ -1,5 +1,25 @@
 node_modules/
-.env
+client/node_modules/
+server/node_modules/
 dist/
+client/dist/
+server/dist/
+
+# Environment files and secrets (the documented template remains tracked).
+.env
+.env.*
+!.env.example
+client/.env
+client/.env.*
+server/.env
+server/.env.*
+
+# Generated files and local tooling.
+*.log
+npm-debug.log*
+coverage/
+.cache/
+
+# Keep the directory, but never commit locally uploaded product images.
 server/uploads/*
 !server/uploads/.gitkeep

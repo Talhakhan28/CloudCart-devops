@@ -8,13 +8,22 @@ const auth = require("./routes/auth"),
   orders = require("./routes/orders"),
   admin = require("./routes/admin"),
   categories = require("./routes/categories");
+const { prisma } = require("./lib");
 const app = express();
 app.use(cors({ origin: process.env.CLIENT_URL || "http://localhost:5173" }));
 app.use(express.json());
 app.use("/uploads", express.static(path.join(__dirname, "../uploads")));
-app.get("/api/health", (_, res) =>
-  res.json({ success: true, message: "CloudCart API is running" }),
-);
+app.get("/api/health", async (_, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`;
+    res.json({ success: true, message: "CloudCart API and database are running" });
+  } catch (error) {
+    console.error("Database health check failed", error.message);
+    res
+      .status(503)
+      .json({ success: false, message: "CloudCart database is unavailable" });
+  }
+});
 app.use("/api/auth", auth);
 app.use("/api/products", products);
 app.use("/api/categories", categories);

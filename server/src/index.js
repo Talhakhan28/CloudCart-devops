@@ -1,1 +1,6 @@
-const app=require('./app'); app.listen(process.env.PORT||5000,()=>console.log(`CloudCart API on ${process.env.PORT||5000}`));
+const app = require("./app");
+const port = Number(process.env.PORT) || 5000;
+
+app.listen(port, "0.0.0.0", () =>
+  console.log(`CloudCart API listening on 0.0.0.0:${port}`),
+);
