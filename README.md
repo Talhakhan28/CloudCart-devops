@@ -1,3 +1,5 @@
+<img width="1900" height="932" alt="image" src="https://github.com/user-attachments/assets/9955a50e-1917-474f-bb23-ada09c27f807" />
+
 # CloudCart
 
 CloudCart is a React/Vite storefront with an Express/Prisma API and a MySQL database. This repository includes local, production-oriented Docker Compose configuration only; it does not provision cloud infrastructure.
