@@ -1,5 +1,10 @@
+
 pipeline {
     agent any
+
+    options {
+        skipDefaultCheckout(true)
+    }
 
     environment {
         AWS_REGION = 'ap-south-1'
@@ -66,14 +71,47 @@ pipeline {
                 '''
             }
         }
+
+        stage('Deploy with Docker Compose') {
+            steps {
+                sh '''
+                    export IMAGE_TAG="$BUILD_NUMBER"
+
+                    docker compose \
+                      --env-file /etc/cloudcart/cloudcart.env \
+                      -f /opt/cloudcart/docker-compose.deploy.yml \
+                      pull
+
+                    docker compose \
+                      --env-file /etc/cloudcart/cloudcart.env \
+                      -f /opt/cloudcart/docker-compose.deploy.yml \
+                      up -d
+                '''
+            }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh '''
+                    docker compose \
+                      --env-file /etc/cloudcart/cloudcart.env \
+                      -f /opt/cloudcart/docker-compose.deploy.yml \
+                      ps
+
+                    curl --fail --silent --show-error \
+                      --retry 5 --retry-delay 3 \
+                      http://localhost/
+                '''
+            }
+        }
     }
 
     post {
         success {
-            echo 'CloudCart images pushed to ECR successfully!'
+            echo 'CloudCart CI/CD and deployment completed successfully!'
         }
         failure {
-            echo 'Pipeline failed. Check Console Output.'
+            echo 'Pipeline failed. Check the Jenkins Console Output.'
         }
     }
 }
