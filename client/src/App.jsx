@@ -189,7 +189,7 @@ function Home() {
         <div>
           <p className="label">THE NEW EVERYDAY</p>
           <h1>
-            Find your next
+            Find your Next
             <br />
             <i>favourite thing.</i>
           </h1>
