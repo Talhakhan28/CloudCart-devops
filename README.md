@@ -1,8 +1,7 @@
+# CloudCart — Cloud-Native E-Commerce Platform with DevOps & CI/CD
+A full-stack e-commerce application built with React, Node.js, Express, and MySQL, deployed on AWS using Docker, Jenkins, and automated CI/CD. The project demonstrates containerization, cloud infrastructure, database integration, object storage, and automated deployment.
 <img width="1900" height="932" alt="image" src="https://github.com/user-attachments/assets/9955a50e-1917-474f-bb23-ada09c27f807" />
 <img width="1182" height="639" alt="image" src="https://github.com/user-attachments/assets/852dfba8-4ec5-4464-8037-cfa07a39494f" />
-# CloudCart — Cloud-Native E-Commerce Platform with DevOps & CI/CD
-
-A full-stack e-commerce application built with React, Node.js, Express, and MySQL, deployed on AWS using Docker, Jenkins, and automated CI/CD. The project demonstrates containerization, cloud infrastructure, database integration, object storage, and automated deployment.
 
 **Repository:** [CloudCart-devops](https://github.com/Talhakhan28/CloudCart-devops)
 
